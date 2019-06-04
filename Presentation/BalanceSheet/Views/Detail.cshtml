@@ -1,0 +1,33 @@
+﻿@model Application.BalanceSheet.Queries.GetBalanceDetail.BalanceDetailModel
+
+@{
+    ViewBag.Title = "BalanceDetail";
+}
+
+@{
+    Layout = "~/Shared/Views/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Id</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entry in Model.Entries)
+        {
+        <tr>
+            @if (entry.Total > 0) { <td>Payment</td> } else { <td>Expense</td> }
+            <td>@entry.Id</td>
+            <td>@entry.Total.ToString()</td>
+        </tr>
+        }
+    </tbody>
+</table>
+<div class="pull-right">
+    <a class="btn btn-primary" href="balanceSheet/create">New Entry</a>
+</div>

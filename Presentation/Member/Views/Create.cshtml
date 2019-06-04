@@ -1,0 +1,34 @@
+﻿@model Presentation.Member.Models.CreateMemberViewModel
+
+@{
+    ViewBag.Title = "MemberCreate";
+}
+
+@{
+    Layout = "~/Shared/Views/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("create", "members", FormMethod.Post))
+{
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label">Name</label>
+            @Html.TextBoxFor(p => p.Member.Name, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label class="control-label">Category</label>
+            @Html.DropDownListFor(p => p.Member.Category.Id, Model.Categories, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label class="control-label">Birth Date</label>
+            @Html.TextBoxFor(p => p.Member.BirthDate, new { type = "date" })
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+}
+<div class="pull-right">
+    @Html.ActionLink("Back to Members", "Index", "members")
+</div>

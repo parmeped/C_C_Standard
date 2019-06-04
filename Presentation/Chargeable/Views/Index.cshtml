@@ -1,0 +1,31 @@
+﻿@model List<Application.Chargeable.Queries.GetChargeablesList.ChargeablesListItemModel>
+
+@{
+    ViewBag.Title = "Chargeables";
+}
+
+@{
+    Layout = "~/Shared/Views/_Layout.cshtml";
+}
+
+
+
+
+<h2>@ViewBag.Title</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var chargeable in Model)
+        {
+            <tr>
+                <td><a href="chargeables/@chargeable.Id">@chargeable.Id</a></td>
+                <td>@chargeable.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,31 @@
+﻿@model List<Application.Category.Queries.GetCategoriesList.CategoriesListItemModel>
+
+@{
+    ViewBag.Title = "Categories";
+}
+
+@{
+    Layout = "~/Shared/Views/_Layout.cshtml";
+}
+
+
+
+
+<h2>@ViewBag.Title</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td><a href="categories/@category.Id">@category.Id</a></td>
+                <td>@category.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

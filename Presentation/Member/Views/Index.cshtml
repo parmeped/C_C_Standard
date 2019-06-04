@@ -1,0 +1,34 @@
+﻿@model List<Application.Member.Queries.GetMembersList.MembersListItemModel>
+
+@{
+    ViewBag.Title = "Members";
+}
+
+@{
+    Layout = "~/Shared/Views/_Layout.cshtml";
+}
+
+
+
+
+<h2>@ViewBag.Title</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var member in Model)
+        {
+            <tr>
+                <td><a href="members/@member.Id">@member.Id</a></td>
+                <td>@member.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="pull-right">
+    <a class="btn btn-primary" href="members/create">New Member</a>
+</div>
