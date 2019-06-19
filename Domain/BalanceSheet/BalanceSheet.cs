@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Domain
 {
+    [Serializable]
     public class BalanceSheet : IEntity
     {
         public int Id { get; set; }        

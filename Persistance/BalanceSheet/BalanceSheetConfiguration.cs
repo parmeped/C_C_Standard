@@ -13,7 +13,7 @@ namespace Persistance
 
             HasMany(x => x.Expenses);
 
-            Property(x => x.Balance);
+            Property(x => x.Balance);           
         }
     }
 }

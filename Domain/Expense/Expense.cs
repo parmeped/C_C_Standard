@@ -1,9 +1,9 @@
 ﻿using Domain.Common;
 using System;
-using System.Collections.Generic;
 
 namespace Domain
 {
+    [Serializable]
     public class Expense : IBalanceSheetEntry
     {
         public int Id { get; set; }
@@ -11,6 +11,8 @@ namespace Domain
         public int balanceSheetId { get; set; }
         public DateTime DateTime { get; set; }
         public Chargeable Chargeable { get; set; }               
+
+        public bool Paid { get; set; }
 
         public decimal Total
         {

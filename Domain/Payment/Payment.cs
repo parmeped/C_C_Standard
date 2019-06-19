@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Domain
 {
+    [Serializable]
     public class Payment : IBalanceSheetEntry
     {
         public int Id { get; set; }

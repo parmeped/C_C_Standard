@@ -16,7 +16,8 @@ namespace Persistence
             Property(x => x.DateTime);
 
             HasRequired(x => x.Chargeable);
-            
+
+            Property(x => x.Paid);
         }
     }
 }

@@ -15,19 +15,26 @@
             <th>Type</th>
             <th>Id</th>
             <th>Total</th>
+            <th>Fecha</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var entry in Model.Entries)
+        @foreach (var entry in Model.Entries.OrderBy(x => x.DateTime))
         {
         <tr>
             @if (entry.Total > 0) { <td>Payment</td> } else { <td>Expense</td> }
             <td>@entry.Id</td>
             <td>@entry.Total.ToString()</td>
+            <td>@entry.DateTime.ToString()</td>            
+            @if(entry.Paid && entry.Total < 0) { <td class="text-success">Paid</td> } else if (entry.Total < 0){ <td class="text-danger">Debt!</td> } else { <td class="text-primary">Payment</td> }
         </tr>
         }
     </tbody>
 </table>
+<div class="pull-left">
+    <button class="btn btn-danger">@Html.ActionLink("New Expense", "CreateExpense", "Expense", new { Id = Model.Id }, null)</button>
+</div>
 <div class="pull-right">
-    <a class="btn btn-primary" href="balanceSheet/create">New Entry</a>
+    <button class="btn btn-success">@Html.ActionLink("New Payment", "CreatePayment", "Payment", new { Id = Model.Id }, null)</button>
 </div>

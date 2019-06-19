@@ -139,6 +139,10 @@
     <Compile Include="Category\CategoryController.cs" />
     <Compile Include="Chargeable\ChargeableController.cs" />
     <Compile Include="CustomRazorViewEngine.cs" />
+    <Compile Include="Expense\ExpenseController.cs" />
+    <Compile Include="Expense\Models\CreateExpenseViewModel.cs" />
+    <Compile Include="Expense\Services\CreateExpenseViewModelFactory.cs" />
+    <Compile Include="Expense\Services\ICreateExpenseViewModelFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -147,6 +151,10 @@
     <Compile Include="Member\Models\CreateMemberViewModel.cs" />
     <Compile Include="Member\Services\CreateMemberViewModelFactory.cs" />
     <Compile Include="Member\Services\ICreateMemberViewModelFactory.cs" />
+    <Compile Include="Payment\PaymentController.cs" />
+    <Compile Include="Payment\Models\CreatePaymentViewModel.cs" />
+    <Compile Include="Payment\Services\CreatePaymentViewModelFactory.cs" />
+    <Compile Include="Payment\Services\ICreatePaymentViewModelFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -163,12 +171,14 @@
     <Content Include="Chargeable\Views\Index.cshtml" />
     <Content Include="Chargeable\Views\Detail.cshtml" />
     <Content Include="BalanceSheet\Views\Detail.cshtml" />
+    <Content Include="Expense\Views\CreateExpense.cshtml" />
     <None Include="Home\Views\Index.cshtml" />
     <Content Include="Member\Views\Detail.cshtml" />
     <Content Include="Member\Views\Create.cshtml" />
     <None Include="Member\Views\Index.cshtml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Payment\Views\CreatePayment.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -179,6 +189,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

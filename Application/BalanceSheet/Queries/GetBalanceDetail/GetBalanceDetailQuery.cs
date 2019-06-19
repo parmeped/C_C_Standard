@@ -18,6 +18,7 @@ namespace Application.BalanceSheet.Queries.GetBalanceDetail
 
         public BalanceDetailModel Execute(int balanceId)
         {
+            decimal Total = 0;
             var balance = _database.BalanceSheets
                 .Where(x => x.Id == balanceId)
                 .Select(x => new BalanceDetailModel()
@@ -33,6 +34,7 @@ namespace Application.BalanceSheet.Queries.GetBalanceDetail
                 {
                     Id = x.Id,
                     Total = x.Chargeable.Value * -1,
+                    Paid = x.Paid,
                     DateTime = x.DateTime
                 })
                 .ToList();
@@ -53,11 +55,21 @@ namespace Application.BalanceSheet.Queries.GetBalanceDetail
             foreach (EntryDetailModel ex in expenses)
             {
                 balance.Entries.Add(ex);
+                Total += ex.Total;
             }
             foreach (EntryDetailModel pay in payments)
             {
                 balance.Entries.Add(pay);
+                Total += pay.Total;
             }
+
+            var balanceSheet = _database.BalanceSheets
+                .FirstOrDefault(x => x.Id == balance.Id);
+            
+            balanceSheet.Balance = Total;
+            
+            _database.BalanceSheets.Attach(balanceSheet);
+            _database.Save();
 
             return balance;
         }

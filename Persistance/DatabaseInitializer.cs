@@ -25,13 +25,13 @@ namespace Persistance
             BalanceSheet balanceSheet1 = new BalanceSheet() { Expenses = new List<Expense>(), Payments = new List<Payment>() };
 
 
-            Expense ex1 = new Expense() { Id = 1, DateTime = DateTime.Now.AddDays(-1), Chargeable = chargeable };
-            Expense ex2 = new Expense() { Id = 2, DateTime = DateTime.Now.AddDays(-5), Chargeable = chargeable1 };
+            Expense ex1 = new Expense() { Id = 1, DateTime = DateTime.Now.AddDays(-1), Chargeable = chargeable, Paid = true };
+            Expense ex2 = new Expense() { Id = 2, DateTime = DateTime.Now.AddDays(-5), Chargeable = chargeable1, Paid = true };
             Expense ex3 = new Expense() { Id = 3, DateTime = DateTime.Now.AddDays(-10), Chargeable = chargeable };
             Expense ex4 = new Expense() { Id = 4, DateTime = DateTime.Now.AddDays(-15), Chargeable = chargeable1 };
-            Expense ex5 = new Expense() { Id = 5, DateTime = DateTime.Now.AddDays(-15), Chargeable = chargeable1 };
-            Expense ex6 = new Expense() { Id = 6, DateTime = DateTime.Now.AddDays(-20), Chargeable = chargeable };
-            Expense ex7 = new Expense() { Id = 7, DateTime = DateTime.Now.AddDays(-15), Chargeable = chargeable3 };
+            Expense ex5 = new Expense() { Id = 5, DateTime = DateTime.Now.AddDays(-15), Chargeable = chargeable1, Paid = true };
+            Expense ex6 = new Expense() { Id = 6, DateTime = DateTime.Now.AddDays(-20), Chargeable = chargeable, Paid = true };
+            Expense ex7 = new Expense() { Id = 7, DateTime = DateTime.Now.AddDays(-15), Chargeable = chargeable3, Paid = true };
             List<Expense> expList = new List<Expense>();
             List<Expense> expList1 = new List<Expense>();
 
@@ -57,7 +57,7 @@ namespace Persistance
             balanceSheet1.Expenses.Add(ex5);
             balanceSheet1.Expenses.Add(ex6);
             balanceSheet1.Expenses.Add(ex7);
-            balanceSheet.Payments.Add(pay2);
+            balanceSheet1.Payments.Add(pay2);
             balanceSheet1.netBalance();
 
             Category category = new Category() { Id = 1, Name = "Socio Activo", Chargeable = chargeable };

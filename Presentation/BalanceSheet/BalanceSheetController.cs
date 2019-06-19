@@ -10,15 +10,15 @@ namespace Presentation.BalanceSheet
     {
 
         private readonly IGetBalanceListQuery _balanceListQuery;
-        private readonly IGetBalanceDetailQuery _balanceDetailQuery;
+        private readonly IGetBalanceDetailQuery _balanceDetailQuery;        
 
         public BalanceSheetController()
-        {
+        {            
             GetBalanceListQuery balanceListQuery = new GetBalanceListQuery(new DatabaseService());
-            GetBalanceDetailQuery balanceDetailQuery = new GetBalanceDetailQuery(new DatabaseService());
+            GetBalanceDetailQuery balanceDetailQuery = new GetBalanceDetailQuery(new DatabaseService());            
 
             _balanceListQuery = balanceListQuery;
-            _balanceDetailQuery = balanceDetailQuery;
+            _balanceDetailQuery = balanceDetailQuery;            
         }
 
         [Route("{id:int}")]
@@ -27,7 +27,6 @@ namespace Presentation.BalanceSheet
             var balanceSheet = _balanceDetailQuery.Execute(id);
 
             return View(balanceSheet);
-        }
-
+        }        
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Domain
 {
+    [Serializable]
     public class Member : IEntity
     {
         public int Id { get; set; }

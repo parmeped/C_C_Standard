@@ -15,8 +15,7 @@ namespace Persistance
         public IDbSet<Chargeable> Chargeables { get; set; }
         public IDbSet<BalanceSheet> BalanceSheets { get; set; }
         public IDbSet<Expense> Expenses { get; set; }
-        public IDbSet<Payment> Payments { get; set; }
-
+        public IDbSet<Payment> Payments { get; set; }        
 
         public DatabaseService() : base("CCTEST")
         {
@@ -38,6 +37,12 @@ namespace Persistance
             modelBuilder.Configurations.Add(new BalanceSheetConfiguration());
             modelBuilder.Configurations.Add(new ExpenseConfiguration());
             modelBuilder.Configurations.Add(new PaymentConfiguration());
+
+            /*modelBuilder.Entity<BalanceSheet>()
+                .MapToStoredProcedures(
+                    p => p.Update(sp => sp.HasName("sp_UpdateNetBalance").Parameter(pm => pm.Id, "balanceSheetId"))
+                );
+            */
         }
     }
 }

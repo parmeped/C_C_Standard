@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Domain
 {
+    [Serializable]
     public class Category : IEntity
     {
         public int Id { get; set; }

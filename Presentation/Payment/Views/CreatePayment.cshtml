@@ -1,0 +1,50 @@
+﻿@model Presentation.Payment.Models.CreatePaymentViewModel
+
+@{
+    ViewBag.Title = "PaymentCreate";
+}
+
+@{
+    Layout = "~/Shared/Views/_Layout.cshtml";
+    decimal Total = 0;
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("CreatePayment", "payment", FormMethod.Post, new { @class = "horizontal" }))
+{
+    <div class="form-group">
+        @Html.HiddenFor(m => m.balanceSheetId)
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                    <th>Pay?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--foreach (var entry in Model.Expenses.OrderBy(x => x.DateTime))-->
+                @for (int i = 0; i < Model.Expenses.Count; i++)                
+                {
+                <tr>
+                    <td>@Html.Label(Model.Expenses[i].Name)</td>
+                    <td>@Html.Label(Model.Expenses[i].Total.ToString())</td>
+                    <!--td>Html.CheckBox(entry.Id.ToString(), true, entry.Paid)</td-->
+                    <td>@Html.CheckBoxFor(m => Model.Expenses[i].Paid)</td>
+                    @Html.HiddenFor(m => Model.Expenses[i].Id)
+                    @Html.HiddenFor(m => Model.Expenses[i].ChargeableId)
+                </tr>
+                    Total += Model.Expenses[i].Total;
+                }
+            </tbody>
+        </table>
+        <h2 class="text-right" id="TotalSelected">Total Owed: @Total.ToString()</h2>
+    </div>
+    <button type="submit" class="btn btn-primary">Pay!</button>
+}
+<div class="pull-right">
+    @Html.ActionLink("Back to BalanceSheet", "Detail", "balanceSheet")
+</div>
+
