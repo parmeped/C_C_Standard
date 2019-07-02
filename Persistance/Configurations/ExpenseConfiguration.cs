@@ -1,8 +1,5 @@
 ﻿using Domain;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Text;
 
 namespace Persistence
 {
@@ -14,6 +11,8 @@ namespace Persistence
             HasKey(x => x.Id);
 
             Property(x => x.DateTime);
+
+            Property(x => x.balanceSheetId);
 
             HasRequired(x => x.Chargeable);
 

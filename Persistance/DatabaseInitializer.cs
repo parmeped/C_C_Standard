@@ -51,14 +51,12 @@ namespace Persistance
             balanceSheet.Expenses.Add(ex2);
             balanceSheet.Expenses.Add(ex3);
             balanceSheet.Expenses.Add(ex4);
-            balanceSheet.Payments.Add(pay1);
-            balanceSheet.netBalance();
+            balanceSheet.Payments.Add(pay1);            
 
             balanceSheet1.Expenses.Add(ex5);
             balanceSheet1.Expenses.Add(ex6);
             balanceSheet1.Expenses.Add(ex7);
-            balanceSheet1.Payments.Add(pay2);
-            balanceSheet1.netBalance();
+            balanceSheet1.Payments.Add(pay2);            
 
             Category category = new Category() { Id = 1, Name = "Socio Activo", Chargeable = chargeable };
             Category category2 = new Category() { Id = 2, Name = "Socio Vitalicio", Chargeable = chargeable1 };
@@ -68,6 +66,10 @@ namespace Persistance
             database.Members.Add(member2);
 
             database.SaveChanges();
+
+            BalanceSheetServices balanceSheetServices = new BalanceSheetServices();
+            balanceSheetServices.BalanceSave(balanceSheet.Id);
+            balanceSheetServices.BalanceSave(balanceSheet1.Id);
         }
     }
 }

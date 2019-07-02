@@ -13,6 +13,8 @@ namespace Persistence
         {
             HasKey(x => x.Id);
 
+            Property(x => x.balanceSheetId);
+
             Property(x => x.DateTime);
 
             Property(x => x.Total);

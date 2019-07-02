@@ -21,11 +21,12 @@ namespace Presentation.BalanceSheet
         public ExpenseController()
         {
             ExpenseFactory expenseFactory = new ExpenseFactory();
+            BalanceSheetServices balanceSheetServices = new BalanceSheetServices();
             GetChargeablesListQuery chargeablesListQuery = new GetChargeablesListQuery(new DatabaseService());
             GetBalanceListQuery balanceListQuery = new GetBalanceListQuery(new DatabaseService());
             GetBalanceDetailQuery balanceDetailQuery = new GetBalanceDetailQuery(new DatabaseService());
             CreateExpenseViewModelFactory factory = new CreateExpenseViewModelFactory(chargeablesListQuery);
-            CreateExpenseCommand createExpenseCommand = new CreateExpenseCommand(new DatabaseService(), expenseFactory);
+            CreateExpenseCommand createExpenseCommand = new CreateExpenseCommand(new DatabaseService(), expenseFactory, balanceSheetServices);
 
             _balanceListQuery = balanceListQuery;
             _balanceDetailQuery = balanceDetailQuery;

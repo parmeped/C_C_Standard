@@ -18,9 +18,10 @@ namespace Presentation.BalanceSheet
         public PaymentController()
         {
             PaymentFactory paymentFactory = new PaymentFactory();
+            BalanceSheetServices balanceSheetServices = new BalanceSheetServices();
             GetBalanceUnpaidQuery unpaidsListQuery = new GetBalanceUnpaidQuery(new DatabaseService());            
             CreatePaymentViewModelFactory factory = new CreatePaymentViewModelFactory(unpaidsListQuery);
-            CreatePaymentCommand createPaymentCommand = new CreatePaymentCommand(new DatabaseService(), paymentFactory);
+            CreatePaymentCommand createPaymentCommand = new CreatePaymentCommand(new DatabaseService(), paymentFactory, balanceSheetServices);
         
             _factory = factory;
             _createPaymentCommand = createPaymentCommand;

@@ -1,6 +1,5 @@
 ﻿using Application;
 using Domain;
-using Domain.Common;
 using Persistence;
 using System.Data.Entity;
 

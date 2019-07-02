@@ -1,4 +1,5 @@
 ﻿using Application.BalanceSheet.Commands.Payment.Factory;
+using Application.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,14 +10,17 @@ namespace Application.BalanceSheet.Commands.Payment
     {
         private readonly IDatabaseService _database;
         private readonly IPaymentFactory _factory;
+        private readonly IBalanceSheetService _balanceSheetService;
 
         public CreatePaymentCommand(
             IDatabaseService database,
-            IPaymentFactory factory
+            IPaymentFactory factory,
+            IBalanceSheetService balanceSheetService
             )
         {
             _database = database;
             _factory = factory;
+            _balanceSheetService = balanceSheetService;
         }
 
         public void Execute(CreatePaymentModel model)
@@ -34,24 +38,26 @@ namespace Application.BalanceSheet.Commands.Payment
                 expense.Chargeable = _database.Chargeables
                     .FirstOrDefault(x => x.Id == Cid);
 
-                expense.Paid = model.Expenses[i].Paid;
+                //expense.Paid = model.Expenses[i].Paid;
 
                 expenses.Add(expense);
 
             }
 
-            var Payment = _factory.Create(model.balanceSheetId, expenses);                               
-
+            var Payment = _factory.Create(model.balanceSheetId, expenses);
+            bool ok = true;
             foreach (Domain.Expense exp in expenses)
             {
                 var found = _database.Expenses.Find(exp.Id);
                 _database.Expenses.Attach(found);
-                found.Paid = exp.Paid;
+                found.Paid = ok;
             }
 
             _database.Payments.Add(Payment);
 
             _database.Save();
+
+            _balanceSheetService.BalanceSave(model.balanceSheetId);
         }
     }
 }

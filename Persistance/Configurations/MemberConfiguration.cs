@@ -1,8 +1,5 @@
 ﻿using Domain;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Text;
 
 namespace Persistence
 {
@@ -21,7 +18,8 @@ namespace Persistence
                 
             Property(x => x.BirthDate);
 
-            HasRequired(x => x.BalanceSheet);
+            HasOptional(f => f.BalanceSheet)
+                .WithRequired(x => x.Member);            
         }
     }
 }

@@ -9,6 +9,7 @@
 }
 
 <h2>@ViewBag.Title</h2>
+<h3>Total: @Model.Total.ToString()</h3>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -35,6 +36,16 @@
 <div class="pull-left">
     <button class="btn btn-danger">@Html.ActionLink("New Expense", "CreateExpense", "Expense", new { Id = Model.Id }, null)</button>
 </div>
-<div class="pull-right">
-    <button class="btn btn-success">@Html.ActionLink("New Payment", "CreatePayment", "Payment", new { Id = Model.Id }, null)</button>
-</div>
+@if (Model.Total < 0)
+{
+    <div class="pull-right">
+        <button class="btn btn-success">@Html.ActionLink("New Payment", "CreatePayment", "Payment", new { Id = Model.Id }, null)</button>
+    </div>
+}
+else
+{
+    <div>
+        <h2>No hay cargos pendientes!</h2>
+    </div>
+}
+
